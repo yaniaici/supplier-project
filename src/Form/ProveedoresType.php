@@ -6,8 +6,8 @@ use App\Entity\Proveedores;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TelType; 
+use Symfony\Component\Form\Extension\Core\Type\EmailType;   // Tipo de campo email
+use Symfony\Component\Form\Extension\Core\Type\TelType;     // Tipo de campo teléfono
 use Symfony\Component\Validator\Constraints\Email;      
 use Symfony\Component\Validator\Constraints\Length;     // Restricción de longitud
 use Symfony\Component\Validator\Constraints\NotBlank;   // Restricción de campo vacío
