@@ -1,10 +1,27 @@
-# config/packages/doctrine.yaml
+doctrine:
 doctrine:
   dbal:
-    url: '%env(resolve:DATABASE_URL)%'    # DB URL as defined in .env
+    url: '%env(resolve:DATABASE_URL)%'
     driver: 'pdo_mysql'
-    server_version: '8.0'
+    host: 'localhost'
+    port: '3306'
+    dbname: 'supplier_project'
+    user: 'root'
+    password: ''
     charset: utf8mb4
     default_table_options:
       charset: utf8mb4
       collate: utf8mb4_unicode_ci
+    types:
+      varchar: Doctrine\DBAL\Types\StringType
+  orm:
+    auto_generate_proxy_classes: true
+    naming_strategy: doctrine.orm.naming_strategy.underscore
+    auto_mapping: true
+    mappings:
+      App:
+        is_bundle: false
+        type: annotation
+        dir: '%kernel.project_dir%/src/Entity'
+        prefix: 'App\Entity'
+        alias: App

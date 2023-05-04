@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://media.licdn.cn/dms/image/C510BAQHXRkjRfJARmg/company-logo_200_200/0/1519940097436?e=2159024400&v=beta&t=w4GhqwDpWBkxemh8cVGS4icLoEt1gV67I2PmWRH0fx0">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+  </head>
+  <body>
+  <style>
+    .navMenu {
+      overflow: hidden;
+      background-color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+
+    }
+    .navMenu a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    .dropdown {
+      float: left;
+      overflow: hidden;
+    }
+    .dropdown .dropbtn {
+      font-size: 16px;  
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+    .navMenu a:hover, .dropdown:hover .dropbtn {
+      background-color: red;
+    }
+    </style>
+    <nav class="navbar">
+      <div class="container-fluid">
+        </a>
+        </button>
+        <nav class="navMenu">
+          <a href="http://localhost/supplier-project/public/">Inicio</a>
+          <a href="http://localhost/supplier-project/public/proveedores/read">Leer Proveedores</a>
+          <a href="http://localhost/supplier-project/public/proveedores/new">Añadir Proveedor</a>
+          <a href="#">Eliminar Proveedor</a>
+          <a href="#">Eliminar Proveedor</a>
+        </nav>
+        <div class="container"> {% block body %}{% endblock %} </div>
+  </body>
+</html>

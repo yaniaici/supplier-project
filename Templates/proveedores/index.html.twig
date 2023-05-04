@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Administración de proveedores</h1>
+    <ul>
+        <li><code><a href="{{ 'http://localhost/Practica_Symfony/public/proveidors/read'}}">Consultar els proveidors</a></code></li>
+        <li><code><a href="{{ 'http://localhost/Practica_Symfony/public/proveidors/add'}}">Afegir un nou proveidor</a></code></li>
+        <li><code><a href="{{ 'http://localhost/Practica_Symfony/public/proveidors/edit'}}">Editar un proveidor</a></code></li>
+        <li><code><a href="{{ 'http://localhost/Practica_Symfony/public/proveidors/remove'}}">Eliminar un proveidor</a></code></li>
+    </ul>
+    
+</div>
+{% endblock %}

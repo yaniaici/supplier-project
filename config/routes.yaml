@@ -1,5 +1,38 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+# config/routes.yaml
+
+index:
+    path: /
+    controller: App\Controller\ProveedoresController::index
+
+proveedores_index:
+    path: /proveedores
+    controller: App\Controller\ProveedoresController::index
+
+proveedores_new:
+    path: /proveedores/new
+    controller: App\Controller\ProveedoresController::new
+
+proveedores_edit:
+    path: /proveedores/edit/{id}
+    controller: App\Controller\ProveedoresController::editID
+
+proveedores_delete:
+    path: /proveedores/delete/{id}
+    controller: App\Controller\ProveedoresController::deleteID
+    methods: DELETE
+
+proveedores_edit_who:
+    path: /proveedores/edit
+    controller: App\Controller\ProveedoresController::editWho
+    methods: POST
+
+proveedores_delete_who:
+    path: /proveedores/delete
+    controller: App\Controller\ProveedoresController::deleteWho
+    methods: DELETE
+
+
+proveedores_read:
+    path: /proveedores/read
+    controller: App\Controller\ProveedoresController::read
+

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Consulta de proveedores{% endblock %}
+
+{% block body %}
+<h1>{{title}}</h1>
+<ul>
+    {% for proveedores in data %}
+        Proveedor: {{proveedores.id}}
+        <li>Nombre: {{ proveedores.nombre }}</li>
+        <li>Correo: {{ proveedores.correoElectronico }}</li>
+        <li>Teléfono: {{ proveedores.telefonoContacto }}</li>
+        <li>Tipo: {{ proveedores.tipoProveedor }}</li>
+        <li>Fecha de creación: {{ proveedores.fechaCreacion|date('Y-m-d') }}</li>
+        <li>Fecha de ult. actualización: {{ proveedores.fechaActualizacion|date('Y-m-d') }}</li>
+        <li>Activo: {{ proveedores.activo }}</li>
+        <br></br>
+    {% endfor %}
+</ul>
+{% endblock %}

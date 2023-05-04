@@ -51,7 +51,7 @@ class Proveedores
     private $tipoProveedor;
 
     /**
-     * @ORM\Column(type="boolean)
+     * @ORM\Column(type="boolean")
      */
 
     private $activo;
