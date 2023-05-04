@@ -95,7 +95,7 @@ class ProveedoresController extends AbstractController
         }
 
         return $this->render('proveedores/edit.html.twig', [
-            'mensaje' => 'Proveedor editado con exito ID: $id',
+            'mensaje' => 'Qué deseas editar?',
             'form' => $form->createView(),
         ]);
     }

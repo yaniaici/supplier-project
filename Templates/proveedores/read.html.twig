@@ -3,9 +3,33 @@
 
 {% block body %}
 <h1>{{title}}</h1>
+<style>
+    h1{
+        text-align: center;
+    }
+    ul{
+        list-style: none;
+        text-align: center;
+        padding: 0;
+    }
+    li{
+        text-align: center;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+    .id{
+        text-align: center;
+        background-color: cyan;
+        border: 1px solid #ccc;
+        padding: 8px;
+        font-weight: bold;
+    }
+
+</style>
 <ul>
     {% for proveedores in data %}
-        Proveedor: {{proveedores.id}}
+        <div class="id">Proveedor: {{proveedores.id}}</div>
         <li>Nombre: {{ proveedores.nombre }}</li>
         <li>Correo: {{ proveedores.correoElectronico }}</li>
         <li>Teléfono: {{ proveedores.telefonoContacto }}</li>
