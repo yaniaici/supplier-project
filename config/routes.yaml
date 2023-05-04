@@ -19,17 +19,15 @@ proveedores_edit:
 proveedores_delete:
     path: /proveedores/delete/{id}
     controller: App\Controller\ProveedoresController::deleteID
-    methods: DELETE
+
 
 proveedores_edit_who:
     path: /proveedores/edit
     controller: App\Controller\ProveedoresController::editWho
-    methods: POST
 
 proveedores_delete_who:
     path: /proveedores/delete
     controller: App\Controller\ProveedoresController::deleteWho
-    methods: DELETE
 
 
 proveedores_read:

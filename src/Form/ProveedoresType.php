@@ -41,7 +41,7 @@ class ProveedoresType extends AbstractType
                 new NotBlank(),
                 new Regex([
                     'pattern' => '/^[0-9]{9}$/',
-                    'message' => 'El teléfono debe tener 9 dígitos.',
+                    'message' => 'El teléfono debe tener 9 dígitos.',       // Con esto establecemos una limitación que podremos cambiar en cualquier momento (Por si queremos añadir internacionalidad, por ejemplo)
                 ]),
             ],
         ])

@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Proveedores;
 use App\Form\ConfirmedType;
 use App\Form\ProveedoresType;
+use App\Form\WhoType;
 use App\Repository\ProveedoresRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -24,19 +25,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProveedoresController extends AbstractController
 {
     /**
-     * @Route("/", name="proveedores_index", methods={"GET"})
+     * @Route("/", name="proveedores_index")
      */
-    public function index(ProveedoresRepository $proveedoresRepository): Response
+    public function index(): Response
     {
-        $proveedores = $proveedoresRepository->findAll();
         return $this->render('proveedores/index.html.twig', [
-            'proveedores' => $proveedores,
+            'title' => 'Proveedores',
         ]);
     }
 
 
     /**
-     * @Route("/proveedores/new", name="proveedores_new", methods={"GET","POST"})
+     * @Route("/proveedores/new", name="proveedores_new")
      */
 
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -98,18 +98,16 @@ class ProveedoresController extends AbstractController
             'mensaje' => 'Proveedor editado con exito ID: $id',
             'form' => $form->createView(),
         ]);
-
-
     }
 
     /**
      * @Route("/proveedores/edit", name="proveedores_edit_who", methods={"POST"})
      */
 
-     public function editWho(ManagerRegistry $managerRegistry, Request $request): Response
-     {
+    public function editWho(ManagerRegistry $managerRegistry, Request $request): Response
+    {
         $manager = $managerRegistry->getManager();
-        $form = $this->createForm(ProveedoresType::class);
+        $form = $this->createForm(WhoType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -117,70 +115,78 @@ class ProveedoresController extends AbstractController
             return $this->redirectToRoute('proveedores_edit', ['id' => $id]);
         }
 
-        return $this->render('proveedores/edit.html.twig', [
+        return $this->render('proveedores/menuWho.html.twig', [
             'title' => 'Qué proveedor editamos?',
             'form' => $form->createView()
         ]);
-     }
+    }
 
 
     /**
-     * @Route("/proveedores/delete/{id}", name="proveedores_delete", methods={"DELETE"})
+     * @Route("/proveedores/delete/{id}", name="proveedores_delete")
      */
-    public function deleteID($id, Request $request, EntityManagerInterface $entityManager): Response
+    public function deleteID(Request $request, EntityManagerInterface $manager, $id): Response
     {
-        $manager = $entityManager;
-        $proveedor = $manager->getRepository(Proveedores::class)->find($id);
-        $id = $proveedor->getId();
+        $entityManager = $manager;
+        $proveedor = $entityManager->getRepository(Proveedores::class)->find($id);
+
 
         if (!$proveedor) {
+
             return $this->render('proveedores/error.html.twig', [
-                'mensaje' => 'Proveedor no encontrado con ID $id'
+                'mensaje' => "Proveedor no encontrado con ID $id"
             ]);
+
         }
+
 
         $form = $this->createForm(ConfirmedType::class);
         $form->handleRequest($request);
 
-        if ($form -> isSubmitted()) {
-            $manager->remove($proveedor);
-            $manager->flush();
-            $alarma = $manager -> getRepository(Proveedores::class)->find($id);
-            return $this->redirectToRoute('proveedores_index');
+        if ($form->isSubmitted()) {
+            $entityManager->remove($proveedor);
+            $entityManager->flush();
+            $alarma = $entityManager->getRepository(Proveedores::class)->find($id);
 
             if ($alarma) {
-                return $this->render('proveedores/error.html.twig', [
-                    'mensaje' => 'No se ha podido eliminar el proveedor'
-                ]);
+                throw $this->createNotFoundException(
+                    'Error en la eliminación del proveedor'
+                );
             }
-        }
-
-        return $this->redirect('proveedores_index');
-
-    }
-
-    /**
-     * @Route("/proveedores/delete", name="proveedores_delete_who", methods={"POST"})
-     */
-
-    public function deleteWho(Request $request, ManagerRegistry $manager): Response {
-
-        $entityManager = $manager->getManager();
-
-        $form = $this -> createForm(ConfirmedType::class);
-        $form -> handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
-            $id = $form["ID"] -> getData();
-            return $this->redirectToRoute('proveedores_delete', ['id' => $id]);
-            
+            return $this->redirect('http://localhost/supplier-project/public/');
         }
 
         return $this->render('proveedores/delete.html.twig', [
-            'title' => 'Borrar proveedor',
-            'form' => $form->createView()
+            'title' => 'Eliminar proveedor',
+            'form' => $form->createView(),
+            'proveedor' => $proveedor
         ]);
+
+        
     }
+
+    /**
+     * @Route("/proveedores/delete", name="proveedores_delete_who")
+     */
+    public function deleteWho(ManagerRegistry $manager, Request $request): Response
+    {   
+        $entityManager = $manager->getManager();
+
+        $form = $this->createForm(WhoType::class);
+        $form->handleRequest($request);
+
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $id = $form["ID"]->getData();
+            return $this->redirect("http://localhost/supplier-project/public/proveedores/delete/$id");              
+        }
+
+        return $this->render('proveedores/menuWho.html.twig', [
+            'title' => 'Qué proveedor deseas eliminar?', 'form' => $form->createView(),
+        ]);        
+    }
+
+
 
 
     /**

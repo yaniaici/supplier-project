@@ -37,7 +37,7 @@ class Proveedores
      * @ORM\Column(type="varchar", length=20, nullable=true)
      */
 
-    private $telefonoContacto; // Consultado en wikipedia, llega a 20 caracteres
+    private $telefonoContacto; // Por buenas prácticas y por gestión de datos, el teléfono se guarda como varchar
 
     const TIPO_HOTEL = 'hotel';
     const TIPO_PISTA = 'pista';

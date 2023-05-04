@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Eliminar Proveedor{% endblock %}
+
+{% block body %}
+<h1>{{title}}</h1>
+Se eliminará al siguiente proveedor:
+<br></br>
+
+    Proveedor: {{proveedor.id}}
+    <li>Nombre: {{ proveedor.nombre }}</li>
+    <li>Correo: {{ proveedor.correoElectronico }}</li>
+    <li>Teléfono: {{ proveedor.telefonoContacto }}</li>
+    <li>Tipo: {{ proveedor.tipoProveedor }}</li>
+    <li>Fecha de creación: {{ proveedor.fechaCreacion|date('Y-m-d') }}</li>
+    <li>Fecha de ult. actualización: {{ proveedor.fechaActualizacion|date('Y-m-d') }}</li>
+    <li>Activo: {{ proveedor.activo }}</li>
+        <br></br>
+<br></br>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+{% endblock %}
