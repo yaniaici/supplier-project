@@ -67,7 +67,7 @@ class ProveedoresController extends AbstractController
     }
 
     /**
-     * @Route("/proveedores/edit/{id}", name="proveedores_edit", methods={"GET","POST"})
+     * @Route("/proveedores/edit/{id}", name="proveedores_edit")
      */
 
 
@@ -101,7 +101,7 @@ class ProveedoresController extends AbstractController
     }
 
     /**
-     * @Route("/proveedores/edit", name="proveedores_edit_who", methods={"POST"})
+     * @Route("/proveedores/edit", name="proveedores_edit_who")
      */
 
     public function editWho(ManagerRegistry $managerRegistry, Request $request): Response
