@@ -6,15 +6,34 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .boton {
+       border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+        padding: 10px; /*espacio alrededor texto*/
+        background-color: #2e518b; /*color botón*/
+        color: #ffffff; /*color texto*/
+        text-decoration: none; /*decoración texto*/
+        text-transform: uppercase; /*capitalización texto*/
+        font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+        border-radius: 50px; /*bordes redondos*/
+        display: inline-block; /*en línea con el texto*/ 
+        margin: 10px; /*espacio alrededor objeto*/
+        transition: all 0.3s ease-in-out; /*transición propiedad*/
+    }
+
+    .boton:hover {
+        background-color: #ffffff; /*color botón*/
+        color: #2e518b; /*color texto*/
+        border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+    }
 </style>
 
 <div class="example-wrapper">
     <h1>Administración de proveedores</h1>
     <ul>
-        <li><code><a href="{{ '#'}}">Consultar els proveidors</a></code></li>
-        <li><code><a href="{{ '#'}}">Afegir un nou proveidor</a></code></li>
-        <li><code><a href="{{ '#'}}">Editar un proveidor</a></code></li>
-        <li><code><a href="{{ '#'}}">Eliminar un proveidor</a></code></li>
+        <li><code><a class="boton" href="{{ 'http://localhost/supplier-project/public/proveedores/read'}}">Lista de proveedores</a></code></li>
+        <li><code><a class="boton" href="{{ 'http://localhost/supplier-project/public/proveedores/new'}}">Nuevo proveedor</a></code></li>
+        <li><code><a class="boton" href="{{ '#'}}">Editar proveedor</a></code></li>
+        <li><code><a class="boton" href="{{ '#'}}">Eliminar proveedor</a></code></li>
     </ul>
     
 </div>

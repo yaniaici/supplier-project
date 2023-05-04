@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;     // Restricción de longitud
 use Symfony\Component\Validator\Constraints\NotBlank;   // Restricción de campo vacío
 use Symfony\Component\Validator\Constraints\Regex;      // Restricción de expresión regular (formato)
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;  // Restricción para las opciones
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class ProveedoresType extends AbstractType
 {
@@ -37,15 +40,23 @@ class ProveedoresType extends AbstractType
             'constraints' => [
                 new NotBlank(),
                 new Regex([
-                    'pattern' => '/^[0-9]{10}$/',
-                    'message' => 'El teléfono debe tener 10 dígitos.',
+                    'pattern' => '/^[0-9]{9}$/',
+                    'message' => 'El teléfono debe tener 9 dígitos.',
                 ]),
             ],
         ])
-            ->add('tipoProveedor')
+        ->add('tipoProveedor', ChoiceType::class, [
+            'choices' => [
+                'Hotel' => 'hotel',
+                'Pista' => 'pista',
+                'Complemento' => 'complemento',
+            ],
+        ])
+        ->add('guardar', SubmitType::class)
             ->add('activo');
           //  ->add('fechaCreacion') ESTAS YA LAS CREA EL CONTROLLER
           //  ->add('fechaActualizacion')
+
         
     }
 

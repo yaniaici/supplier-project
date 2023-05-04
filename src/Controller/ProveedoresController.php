@@ -61,7 +61,7 @@ class ProveedoresController extends AbstractController
         }
 
         return $this->render('proveedores/new.html.twig', [
-            'proveedor' => $proveedor,
+            'title' => 'Nuevo proveedor',
             'form' => $form->createView(),
         ]);
     }
